@@ -311,7 +311,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0c55545c595a25947924dfe046456ee2, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: -8794437010768596115, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: drumSound
       value: 
-      objectReference: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
+      objectReference: {fileID: 8300000, guid: 0c55545c595a25947924dfe046456ee2, type: 3}
     - target: {fileID: -8794437010768596115, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: clickSound
       value: 
