@@ -3,7 +3,8 @@ guid: de195667650acaf49b1d229dae544651
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - drumSound: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

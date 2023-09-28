@@ -4,40 +4,85 @@ using UnityEngine;
 
 public class RhythmPlayer : MonoBehaviour
 {
-    public AudioClip drumSound; 
-    private AudioSource audioSource; 
-    private bool isPlayingAudio = false; // Flag to track whether the audio is playing
+    public AudioClip drumSound;
 
-    void Start()
+    private List<float> rhythmPattern = new List<float>(); // Store the rhythm pattern
+    private int currentBeatIndex = 0; // Index to track the current beat
+    private bool isPlayingPattern = false; // Flag to indicate whether the rhythm pattern is playing
+
+    private AudioSource audioSource;
+    private float patternStartTime; // Store the start time of the pattern
+
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        // Define a simple rhythm pattern (for demonstration)
+        rhythmPattern.Add(0.0f);
+        rhythmPattern.Add(0.637f);
+        rhythmPattern.Add(1.132f);
+        rhythmPattern.Add(1.289f);
+        rhythmPattern.Add(1.606f);
+        rhythmPattern.Add(1.923f);
     }
 
     private void OnMouseDown()
     {
-        if (!isPlayingAudio) // Check if the audio is not already playing
+        Debug.Log("Clicked");
+
+        if (!isPlayingPattern)
         {
-            Debug.Log("Clicked");
-            if (drumSound != null && audioSource != null)
-            {
-                StartCoroutine(PlayAudio());
-            }
-            else
-            {
-                Debug.LogError("Audio clip or AudioSource component not set up properly.");
-            }
+            StartRhythmPattern();
+        }
+        else
+        {
+            // Stop the current pattern and start a new one
+            StopRhythmPattern();
+            StartRhythmPattern();
         }
     }
 
-    private IEnumerator PlayAudio()
+    private void StartRhythmPattern()
     {
-        isPlayingAudio = true; // Set the flag to indicate that the audio is playing
-
-        audioSource.PlayOneShot(drumSound);
-
-        // Wait for the duration of the audio clip
-        yield return new WaitForSeconds(drumSound.length);
-
-        isPlayingAudio = false; // Reset the flag when the audio finishes
+        Debug.Log("PlayRhythmPattern started");
+        currentBeatIndex = 0;
+        isPlayingPattern = true;
+        patternStartTime = Time.timeSinceLevelLoad; // Store the start time
     }
+
+    private void StopRhythmPattern()
+    {
+        Debug.Log("Stopping RhythmPattern");
+        isPlayingPattern = false;
+    }
+
+    private void Update()
+    {
+        if (isPlayingPattern)
+        {
+            float beatTime = rhythmPattern[currentBeatIndex];
+            float expectedBeatTime = patternStartTime + beatTime;
+
+            // Check if it's time to play the next beat
+            if (currentBeatIndex < rhythmPattern.Count && Time.timeSinceLevelLoad >= expectedBeatTime)
+            {
+                audioSource.PlayOneShot(drumSound);
+                // Debug.Log("Next beat coming in: " + (expectedBeatTime - Time.timeSinceLevelLoad));
+                currentBeatIndex++;
+
+                // Check if the rhythm pattern is finished
+                if (currentBeatIndex >= rhythmPattern.Count)
+                {
+                    Debug.Log("Rhythm pattern finished");
+                    isPlayingPattern = false;
+                }
+            }
+        }
+    }
+    
+    public List<float> GetRhythmPattern()
+    {
+        return rhythmPattern;
+    }
+
 }
