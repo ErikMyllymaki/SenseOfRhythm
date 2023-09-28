@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: a8d0f142fc2d26648a51715121d4da9b
+  - enabled: 1
     path: Assets/Scenes/Copycat.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Polyrhythm.unity
+    guid: 419fb94da56bfbc438b2981355125861
   m_configObjects: {}
