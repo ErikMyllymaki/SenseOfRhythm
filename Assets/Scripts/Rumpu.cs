@@ -9,8 +9,8 @@ public class Rumpu : MonoBehaviour
     private AudioSource audioSource;
     private int currentBeatIndex = 0;
     private float beatTolerance = 0.1f;
-    private bool isFirstPress = false; // Boolean flag to track the first press
-    private float startTime; // Record the start time when the player first presses the drum
+    private bool isFirstPress = false; 
+    private float startTime;
 
     private void Start()
     {
@@ -50,31 +50,32 @@ public class Rumpu : MonoBehaviour
         {
             List<float> rhythmPattern = rhythmPlayer.GetRhythmPattern();
 
-    if (currentBeatIndex < rhythmPattern.Count)
-    {
-        float elapsedTime = Time.time - startTime; // Calculate time since the first press
+            if (currentBeatIndex < rhythmPattern.Count)
+            {
+                float elapsedTime = Time.time - startTime; // Calculate time since the first press
 
-        // Check if the elapsed time is within the range of the expected beat time plus/minus beatTolerance
-        float expectedBeatTime = rhythmPattern[currentBeatIndex];
-        float minTime = expectedBeatTime - beatTolerance;
-        float maxTime = expectedBeatTime + beatTolerance;
+                // Check if the elapsed time is within the range of the expected beat time plus/minus beatTolerance
+                float expectedBeatTime = rhythmPattern[currentBeatIndex];
+                float minTime = expectedBeatTime - beatTolerance;
+                float maxTime = expectedBeatTime + beatTolerance;
 
-        if (elapsedTime >= minTime && elapsedTime <= maxTime)
-        {
-            Debug.Log("Beat Matched!");
-            audioSource.PlayOneShot(clickSound);
-            currentBeatIndex++;
-        }
-        else
-        {
-            Debug.Log("Beat Missed!");
+                if (elapsedTime >= minTime && elapsedTime <= maxTime)
+                {
+                    Debug.Log("Beat Matched!");
+                    audioSource.PlayOneShot(clickSound);
+                    currentBeatIndex++;
+
+                    if (currentBeatIndex == rhythmPattern.Count)
+                    {
+                        Debug.Log("All Beats Matched!");
+                    }
+                }
+                else
+                {
+                    Debug.Log("Beat Missed!");
+                }
+            }
         }
     }
-    else
-    {
-        Debug.Log("All Beats Matched!");
-    }
 
-        }
-    }
 }

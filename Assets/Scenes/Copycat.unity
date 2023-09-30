@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPlayer
+      value: 
+      objectReference: {fileID: 968469333}
     - target: {fileID: -209182456729686060, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -311,7 +315,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0c55545c595a25947924dfe046456ee2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -442,6 +446,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &968469333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8794437010768596115, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
+  m_PrefabInstance: {fileID: 40577442178079007}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968469330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de195667650acaf49b1d229dae544651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &40577442178079007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,7 +468,7 @@ PrefabInstance:
     - target: {fileID: -8794437010768596115, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: drumSound
       value: 
-      objectReference: {fileID: 8300000, guid: 0c55545c595a25947924dfe046456ee2, type: 3}
+      objectReference: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
     - target: {fileID: -8794437010768596115, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: clickSound
       value: 
