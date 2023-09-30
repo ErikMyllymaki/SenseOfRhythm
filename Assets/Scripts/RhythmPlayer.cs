@@ -17,7 +17,7 @@ public class RhythmPlayer : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        // Define a simple rhythm pattern (for demonstration)
+        // Define a simple rhythm pattern
         rhythmPattern.Add(0.0f);
         rhythmPattern.Add(0.637f);
         rhythmPattern.Add(1.132f);
@@ -79,7 +79,7 @@ public class RhythmPlayer : MonoBehaviour
             }
         }
     }
-    
+
     public List<float> GetRhythmPattern()
     {
         return rhythmPattern;
