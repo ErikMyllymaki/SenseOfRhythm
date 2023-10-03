@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickCountText: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1001 &2641178139727740294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,9 +549,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickCountText: {fileID: 0}
-  resetButton: {fileID: 0}
   gameDuration: 5
   clickSound: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
+  audioSource: {fileID: 2641178139727740296}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
