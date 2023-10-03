@@ -5,25 +5,20 @@ using UnityEngine;
 public class RhythmPlayer : MonoBehaviour
 {
     public AudioClip drumSound;
-
     private List<float> rhythmPattern = new List<float>(); // Store the rhythm pattern
     private int currentBeatIndex = 0; // Index to track the current beat
     private bool isPlayingPattern = false; // Flag to indicate whether the rhythm pattern is playing
-
     private AudioSource audioSource;
     private float patternStartTime; // Store the start time of the pattern
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+    }
 
-        // Define a simple rhythm pattern
-        rhythmPattern.Add(0.0f);
-        rhythmPattern.Add(0.637f);
-        rhythmPattern.Add(1.132f);
-        rhythmPattern.Add(1.289f);
-        rhythmPattern.Add(1.606f);
-        rhythmPattern.Add(1.923f);
+    public void SetRhythmPattern(List<float> pattern)
+    {
+        rhythmPattern = pattern;
     }
 
     private void OnMouseDown()

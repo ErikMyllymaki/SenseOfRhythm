@@ -6,6 +6,7 @@ public class Rumpu : MonoBehaviour
 {
     public RhythmPlayer rhythmPlayer;
     public AudioClip clickSound;
+    public List<float> rhythmPattern = new List<float>(); // Make the rhythm pattern public
     private AudioSource audioSource;
     private int currentBeatIndex = 0;
     private float beatTolerance = 0.2f;
@@ -20,19 +21,15 @@ public class Rumpu : MonoBehaviour
         {
             Debug.LogError("Audio clip not assigned to clickSound field!");
         }
+    }
 
-        if (rhythmPlayer != null)
+    public void SetRhythmPattern(List<float> pattern)
+    {
+        rhythmPattern = pattern;
+        Debug.Log("Rhythm Pattern in Rumpu:");
+        foreach (float beatTime in rhythmPattern)
         {
-            List<float> rhythmPattern = rhythmPlayer.GetRhythmPattern();
-            Debug.Log("Rhythm Pattern in Rumpu:");
-            foreach (float beatTime in rhythmPattern)
-            {
-                Debug.Log("Beat Time: " + beatTime);
-            }
-        }
-        else
-        {
-            Debug.LogError("RhythmPlayer reference is null. Please assign it in the Inspector.");
+            Debug.Log("Beat Time: " + beatTime);
         }
     }
 
@@ -46,10 +43,8 @@ public class Rumpu : MonoBehaviour
             Debug.Log("Player's Turn Started!");
         }
 
-        if (rhythmPlayer != null)
+        if (rhythmPattern != null)
         {
-            List<float> rhythmPattern = rhythmPlayer.GetRhythmPattern();
-
             if (currentBeatIndex < rhythmPattern.Count)
             {
                 float elapsedTime = Time.time - startTime; // Calculate time since the first press
@@ -68,6 +63,12 @@ public class Rumpu : MonoBehaviour
                     if (currentBeatIndex == rhythmPattern.Count)
                     {
                         Debug.Log("All Beats Matched!");
+                        // Load the next level
+                        LevelManager levelManager = FindObjectOfType<LevelManager>();
+                        if (levelManager != null)
+                        {
+                            levelManager.LoadNextLevel();
+                        }
                     }
                 }
                 else
@@ -77,5 +78,4 @@ public class Rumpu : MonoBehaviour
             }
         }
     }
-
 }

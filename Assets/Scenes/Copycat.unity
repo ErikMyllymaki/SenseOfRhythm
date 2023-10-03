@@ -135,6 +135,30 @@ PrefabInstance:
       propertyPath: rhythmPlayer
       value: 
       objectReference: {fileID: 968469333}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.data[1]
+      value: 0.637
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.data[2]
+      value: 1.132
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.data[3]
+      value: 1.289
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.data[4]
+      value: 1.606
+      objectReference: {fileID: 0}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: rhythmPattern.Array.data[5]
+      value: 1.923
+      objectReference: {fileID: 0}
     - target: {fileID: -209182456729686060, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: m_audioClip
       value: 
@@ -544,6 +568,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 968469331}
   m_SourcePrefab: {fileID: 100100000, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
+--- !u!1001 &1670318870365685684
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.84188104
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75277925
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.9116952
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997801844991018685, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: m_Name
+      value: Level Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -551,3 +632,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 397244779}
   - {fileID: 40577442178079007}
+  - {fileID: 1670318870365685684}
