@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ClickSoundLimitedTime : MonoBehaviour
 {
     public AudioClip clickSound;
     private AudioSource audioSource;
     private float clickDuration = 5f;
-    private bool canClick = true; // Start with canClick as true
+    private bool canClick = false;
     private float clickStartTime;
-    private int clickCount = 0;
+    private int clickCount;
+    private bool gameEnded = false;
+
+    // public Button restartButton;
 
     private void Start()
     {
@@ -19,12 +23,22 @@ public class ClickSoundLimitedTime : MonoBehaviour
         {
             Debug.LogError("Click sound is not assigned!");
         }
+
+        // Attach a method to the restart button's click event
+        // if (restartButton != null)
+        // {
+        //     restartButton.onClick.AddListener(RestartGame);
+        // }
     }
 
     private void OnMouseDown()
     {
-        // Check if you can click and the 5-second duration hasn't elapsed
-        if (canClick && Time.time - clickStartTime <= clickDuration)
+        // Check if you can click and the game hasn't ended
+        if (!canClick && !gameEnded)
+        {
+            StartClicking();
+        }
+        else if (Time.time - clickStartTime <= clickDuration)
         {
             // Play the click sound
             if (audioSource != null && clickSound != null)
@@ -41,12 +55,28 @@ public class ClickSoundLimitedTime : MonoBehaviour
         }
     }
 
+    private void StartClicking()
+    {
+        clickCount = 0;
+        canClick = true;
+        clickStartTime = Time.time;
+    }
+
+    private void RestartGame()
+    {
+        // Reset the click count and enable clicking
+        clickCount = 0;
+        canClick = false;
+        gameEnded = false;
+    }
+
     private void Update()
     {
         // Check if the 5-second duration has elapsed
         if (canClick && Time.time - clickStartTime >= clickDuration)
         {
             canClick = false;
+            gameEnded = true;
             Debug.Log("Clicks within 5 seconds: " + clickCount);
         }
     }
