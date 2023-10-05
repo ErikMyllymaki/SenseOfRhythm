@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public AudioClip moro;
 
     // Define your rhythm patterns for each level in the script
     private List<List<float>> levelRhythmPatterns = new List<List<float>>
@@ -22,6 +21,7 @@ public class LevelManager : MonoBehaviour
         // Add more levels with their rhythm patterns here
     };
 
+    
     private int currentLevel = 0; // Current level index
 
     private void Start()
@@ -51,15 +51,29 @@ public class LevelManager : MonoBehaviour
         Rumpu rumpu = GetComponent<Rumpu>();
         RhythmPlayer rhythmPlayer = GetComponent<RhythmPlayer>();
 
-        if (rumpu != null)
+        // if (rumpu != null)
+        // {
+        //     // Set the rhythm pattern for the current level
+        //     List<float> rhythmPattern = levelRhythmPatterns[levelIndex];
+        //     rumpu.SetRhythmPattern(rhythmPattern);
+        // }
+        // else
+        // {
+        //     Debug.LogError("Rumpu script not found!");
+        // }
+    }
+
+    // Add a method to get the rhythm pattern for the current level
+    public List<float> GetCurrentLevelRhythmPattern()
+    {
+        if (currentLevel >= 0 && currentLevel < levelRhythmPatterns.Count)
         {
-            // Set the rhythm pattern for the current level
-            List<float> rhythmPattern = levelRhythmPatterns[levelIndex];
-            rumpu.SetRhythmPattern(rhythmPattern);
+            return levelRhythmPatterns[currentLevel];
         }
         else
         {
-            Debug.LogError("Rumpu script not found!");
+            Debug.LogError("Invalid level index: " + currentLevel);
+            return new List<float>();
         }
     }
 }

@@ -14,11 +14,34 @@ public class RhythmPlayer : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        GetAndSetCurrentLevelRhythmPattern();
     }
 
-    public void SetRhythmPattern(List<float> pattern)
+    // public void SetRhythmPattern(List<float> pattern)
+    // {
+    //     rhythmPattern = pattern;
+    // }
+
+    // Method to get the current level's rhythm pattern from the LevelManager
+    public void GetAndSetCurrentLevelRhythmPattern()
     {
-        rhythmPattern = pattern;
+        // Find the LevelManager in the scene
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+
+        if (levelManager != null)
+        {
+            // Get the rhythm pattern for the current level
+            rhythmPattern = levelManager.GetCurrentLevelRhythmPattern();
+            Debug.Log("Rhythm Pattern in Rumpu:");
+            foreach (float beatTime in rhythmPattern)
+            {
+                Debug.Log("Beat Time: " + beatTime);
+            }
+        }
+        else
+        {
+            Debug.LogError("LevelManager not found in the scene!");
+        }
     }
 
     private void OnMouseDown()
@@ -75,9 +98,9 @@ public class RhythmPlayer : MonoBehaviour
         }
     }
 
-    public List<float> GetRhythmPattern()
-    {
-        return rhythmPattern;
-    }
+    // public List<float> GetRhythmPattern()
+    // {
+    //     return rhythmPattern;
+    // }
 
 }

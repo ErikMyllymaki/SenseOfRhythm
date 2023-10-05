@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rumpu : MonoBehaviour
 {
     public RhythmPlayer rhythmPlayer;
+    public LevelManager levelManager;
     public AudioClip clickSound;
     public List<float> rhythmPattern = new List<float>(); // Make the rhythm pattern public
     private AudioSource audioSource;
@@ -21,17 +22,41 @@ public class Rumpu : MonoBehaviour
         {
             Debug.LogError("Audio clip not assigned to clickSound field!");
         }
+
+        GetAndSetCurrentLevelRhythmPattern();
     }
 
-    public void SetRhythmPattern(List<float> pattern)
+       // Method to get the current level's rhythm pattern from the LevelManager
+    private void GetAndSetCurrentLevelRhythmPattern()
     {
-        rhythmPattern = pattern;
-        Debug.Log("Rhythm Pattern in Rumpu:");
-        foreach (float beatTime in rhythmPattern)
+        // Find the LevelManager in the scene
+        levelManager = FindObjectOfType<LevelManager>();
+
+        if (levelManager != null)
         {
-            Debug.Log("Beat Time: " + beatTime);
+            // Get the rhythm pattern for the current level
+            rhythmPattern = levelManager.GetCurrentLevelRhythmPattern();
+            Debug.Log("Rhythm Pattern in Rumpu:");
+            foreach (float beatTime in rhythmPattern)
+            {
+                Debug.Log("Beat Time: " + beatTime);
+            }
+        }
+        else
+        {
+            Debug.LogError("LevelManager not found in the scene!");
         }
     }
+
+    // public void SetRhythmPattern(List<float> pattern)
+    // {
+    //     rhythmPattern = pattern;
+    //     Debug.Log("Rhythm Pattern in Rumpu:");
+    //     foreach (float beatTime in rhythmPattern)
+    //     {
+    //         Debug.Log("Beat Time: " + beatTime);
+    //     }
+    // }
 
     private void OnMouseDown()
     {
@@ -62,13 +87,19 @@ public class Rumpu : MonoBehaviour
 
                     if (currentBeatIndex == rhythmPattern.Count)
                     {
-                        Debug.Log("All Beats Matched!");
-                        // Load the next level
-                        LevelManager levelManager = FindObjectOfType<LevelManager>();
-                        if (levelManager != null)
-                        {
-                            levelManager.LoadNextLevel();
-                        }
+                    if (levelManager != null)
+                    {
+                        levelManager.LoadNextLevel();
+                        GetAndSetCurrentLevelRhythmPattern(); // Get the new rhythm pattern
+                    }
+
+                    // Update the rhythm pattern in the RhythmPlayer
+                    rhythmPlayer = FindObjectOfType<RhythmPlayer>();
+                    if (rhythmPlayer != null)
+                    {
+                        rhythmPlayer.GetAndSetCurrentLevelRhythmPattern();
+                    }
+                     // Load the next level
                     }
                 }
                 else
