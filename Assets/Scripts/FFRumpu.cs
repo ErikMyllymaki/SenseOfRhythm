@@ -1,60 +1,52 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class FFrumpu : MonoBehaviour
+public class ClickSoundLimitedTime : MonoBehaviour
 {
-    public Text clickCountText;
-    public float gameDuration = 5.0f;
-    public AudioClip clickSound; // Reference to your click sound
+    public AudioClip clickSound;
+    private AudioSource audioSource;
+    private float clickDuration = 5f;
+    private bool canClick = false;
+    private float clickStartTime;
 
-    public AudioSource audioSource;
-
-    private int clickCount = 0;
-    private float timer;
-    private bool isGameRunning = false;
-
-    void Start()
+    private void Start()
     {
-        clickCountText.text = "Clicks: " + clickCount;
-        timer = gameDuration;
+        // Get the AudioSource component attached to the same GameObject
+        audioSource = GetComponent<AudioSource>();
+
+        // Check if an AudioClip is assigned
+        if (clickSound == null)
+        {
+            Debug.LogError("Click sound is not assigned!");
+        }
     }
 
-    void Update()
+    private void OnMouseDown()
     {
-        if (isGameRunning)
+        StartClicking();
+        if (canClick)
         {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
+            // Play the click sound
+            if (audioSource != null && clickSound != null)
             {
-                EndGame();
+                audioSource.PlayOneShot(clickSound);
+            }
+            else  {
+                Debug.Log("virge");
             }
         }
     }
 
-    public void StartGame()
+    public void StartClicking()
     {
-        clickCount = 0;
-        clickCountText.text = "Clicks: " + clickCount;
-        timer = gameDuration;
-        isGameRunning = true;
+        canClick = true;
+        clickStartTime = Time.time;
     }
 
-    void EndGame()
+    private void Update()
     {
-        isGameRunning = false;
-        clickCountText.text = "Game Over! Clicks: " + clickCount;
-    }
-
-    void OnMouseDown()
-    {
-        if (isGameRunning)
+        if (canClick && Time.time - clickStartTime >= clickDuration)
         {
-            clickCount++;
-            clickCountText.text = "Clicks: " + clickCount; // Update the UI Text
-
-            // Play the click sound
-            audioSource.PlayOneShot(clickSound);
+            canClick = false;
         }
     }
 }
