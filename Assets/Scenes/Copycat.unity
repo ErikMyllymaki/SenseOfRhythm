@@ -141,23 +141,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPattern.Array.data[1]
-      value: 0.637
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPattern.Array.data[2]
-      value: 1.132
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPattern.Array.data[3]
-      value: 1.289
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPattern.Array.data[4]
-      value: 1.606
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPattern.Array.data[5]
-      value: 1.923
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -209182456729686060, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: m_audioClip

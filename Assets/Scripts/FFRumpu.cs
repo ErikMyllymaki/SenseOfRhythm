@@ -18,11 +18,14 @@ public class ClickSoundLimitedTime : MonoBehaviour
         {
             Debug.LogError("Click sound is not assigned!");
         }
+
+        StartClicking();
+
     }
 
     private void OnMouseDown()
     {
-        StartClicking();
+        Debug.Log(canClick);
         if (canClick)
         {
             // Play the click sound
