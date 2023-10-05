@@ -5,8 +5,9 @@ public class ClickSoundLimitedTime : MonoBehaviour
     public AudioClip clickSound;
     private AudioSource audioSource;
     private float clickDuration = 5f;
-    private bool canClick = false;
+    private bool canClick = true; // Start with canClick as true
     private float clickStartTime;
+    private int clickCount = 0;
 
     private void Start()
     {
@@ -18,38 +19,35 @@ public class ClickSoundLimitedTime : MonoBehaviour
         {
             Debug.LogError("Click sound is not assigned!");
         }
-
-        StartClicking();
-
     }
 
     private void OnMouseDown()
     {
-        Debug.Log(canClick);
-        if (canClick)
+        // Check if you can click and the 5-second duration hasn't elapsed
+        if (canClick && Time.time - clickStartTime <= clickDuration)
         {
             // Play the click sound
             if (audioSource != null && clickSound != null)
             {
                 audioSource.PlayOneShot(clickSound);
             }
-            else  {
-                Debug.Log("virge");
+            else
+            {
+                Debug.Log("AudioSource or clickSound is missing!");
             }
-        }
-    }
 
-    public void StartClicking()
-    {
-        canClick = true;
-        clickStartTime = Time.time;
+            // Increment the click count
+            clickCount++;
+        }
     }
 
     private void Update()
     {
+        // Check if the 5-second duration has elapsed
         if (canClick && Time.time - clickStartTime >= clickDuration)
         {
             canClick = false;
+            Debug.Log("Clicks within 5 seconds: " + clickCount);
         }
     }
 }

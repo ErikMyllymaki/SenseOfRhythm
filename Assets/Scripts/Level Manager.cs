@@ -18,7 +18,6 @@ public class LevelManager : MonoBehaviour
         {
             0.0f, 0.637f, 1.132f, 1.289f, 1.606f, 1.923f
         },
-        // Add more levels with their rhythm patterns here
     };
 
     
