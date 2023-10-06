@@ -14,6 +14,11 @@ public class Rumpu : MonoBehaviour
     private bool isFirstPress = false; 
     private float startTime;
 
+    private float elapsedTime;
+    private float minTime;
+    private float maxTime;
+    private float expectedBeatTime;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -23,10 +28,11 @@ public class Rumpu : MonoBehaviour
             Debug.LogError("Audio clip not assigned to clickSound field!");
         }
 
+        // Load the initial rhythm pattern
         GetAndSetCurrentLevelRhythmPattern();
     }
 
-       // Method to get the current level's rhythm pattern from the LevelManager
+    // Method to get the current level's rhythm pattern from the LevelManager
     private void GetAndSetCurrentLevelRhythmPattern()
     {
         // Find the LevelManager in the scene
@@ -41,22 +47,16 @@ public class Rumpu : MonoBehaviour
             {
                 Debug.Log("Beat Time: " + beatTime);
             }
+
+            // Initialize values for the new pattern
+            currentBeatIndex = 0;
+            isFirstPress = false;
         }
         else
         {
             Debug.LogError("LevelManager not found in the scene!");
         }
     }
-
-    // public void SetRhythmPattern(List<float> pattern)
-    // {
-    //     rhythmPattern = pattern;
-    //     Debug.Log("Rhythm Pattern in Rumpu:");
-    //     foreach (float beatTime in rhythmPattern)
-    //     {
-    //         Debug.Log("Beat Time: " + beatTime);
-    //     }
-    // }
 
     private void OnMouseDown()
     {
@@ -72,12 +72,12 @@ public class Rumpu : MonoBehaviour
         {
             if (currentBeatIndex < rhythmPattern.Count)
             {
-                float elapsedTime = Time.time - startTime; // Calculate time since the first press
+                elapsedTime = Time.time - startTime; // Calculate time since the first press
 
                 // Check if the elapsed time is within the range of the expected beat time plus/minus beatTolerance
-                float expectedBeatTime = rhythmPattern[currentBeatIndex];
-                float minTime = expectedBeatTime - beatTolerance;
-                float maxTime = expectedBeatTime + beatTolerance;
+                expectedBeatTime = rhythmPattern[currentBeatIndex];
+                minTime = expectedBeatTime - beatTolerance;
+                maxTime = expectedBeatTime + beatTolerance;
 
                 if (elapsedTime >= minTime && elapsedTime <= maxTime)
                 {
@@ -87,24 +87,26 @@ public class Rumpu : MonoBehaviour
 
                     if (currentBeatIndex == rhythmPattern.Count)
                     {
-                    if (levelManager != null)
-                    {
-                        levelManager.LoadNextLevel();
-                        GetAndSetCurrentLevelRhythmPattern(); // Get the new rhythm pattern
-                    }
+                        // If the current beat is the last one in the pattern, load the next level
+                        if (levelManager != null)
+                        {
+                            levelManager.LoadNextLevel();
+                            GetAndSetCurrentLevelRhythmPattern(); // Get the new rhythm pattern
+                        }
 
-                    // Update the rhythm pattern in the RhythmPlayer
-                    rhythmPlayer = FindObjectOfType<RhythmPlayer>();
-                    if (rhythmPlayer != null)
-                    {
-                        rhythmPlayer.GetAndSetCurrentLevelRhythmPattern();
-                    }
-                     // Load the next level
+                        // Update the rhythm pattern in the RhythmPlayer
+                        rhythmPlayer = FindObjectOfType<RhythmPlayer>();
+                        if (rhythmPlayer != null)
+                        {
+                            rhythmPlayer.GetAndSetCurrentLevelRhythmPattern();
+                        }
                     }
                 }
                 else
                 {
                     Debug.Log("Beat Missed!");
+                    Debug.Log("Expected Beat Time: " + expectedBeatTime);
+                    Debug.Log("Elapsed Time: " + elapsedTime);
                 }
             }
         }
