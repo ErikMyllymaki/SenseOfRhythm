@@ -7,14 +7,11 @@ public class ClickSoundLimitedTime : MonoBehaviour
     private AudioSource audioSource;
     private bool canClick = false;
     private float clickStartTime;
-<<<<<<< Updated upstream
     private int clickCount;
     private bool gameEnded = false;
 
     // public Button restartButton;
-=======
     private float clickDuration = 5f;
->>>>>>> Stashed changes
 
     private void Start()
     {
@@ -36,23 +33,19 @@ public class ClickSoundLimitedTime : MonoBehaviour
 
     private void OnMouseDown()
     {
-<<<<<<< Updated upstream
         // Check if you can click and the game hasn't ended
         if (!canClick && !gameEnded)
         {
             StartClicking();
         }
         else if (Time.time - clickStartTime <= clickDuration)
-=======
         if (canClick)
->>>>>>> Stashed changes
         {
             // Play the click sound
             if (audioSource != null)
             {
                 audioSource.PlayOneShot(clickSound);
             }
-<<<<<<< Updated upstream
             else
             {
                 Debug.Log("AudioSource or clickSound is missing!");
@@ -60,8 +53,6 @@ public class ClickSoundLimitedTime : MonoBehaviour
 
             // Increment the click count
             clickCount++;
-=======
->>>>>>> Stashed changes
         }
     }
 
