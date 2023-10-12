@@ -117,9 +117,17 @@ public class Rumpu : MonoBehaviour
                         }
                     }
                 }
-                else
+                if (elapsedTime < minTime)
                 {
+                    Debug.Log("too early");
                     Debug.Log("Beat Missed!");
+                    Debug.Log("Expected Beat Time: " + expectedBeatTime);
+                    Debug.Log("Elapsed Time: " + elapsedTime);
+                    StartRetryState();
+                }
+                if (elapsedTime > maxTime)
+                {
+                    Debug.Log("Too late");
                     Debug.Log("Expected Beat Time: " + expectedBeatTime);
                     Debug.Log("Elapsed Time: " + elapsedTime);
                     StartRetryState();
