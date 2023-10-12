@@ -9,11 +9,11 @@ public class Rumpu : MonoBehaviour
     public RhythmPlayer rhythmPlayer;
     public LevelManager levelManager;
     public AudioClip clickSound;
-    public List<float> rhythmPattern = new List<float>(); // Make the rhythm pattern public
+    public List<float> rhythmPattern = new List<float>();
     private AudioSource audioSource;
     private int currentBeatIndex = 0;
     private float beatTolerance = 0.2f;
-    private bool isFirstPress = false; 
+    private bool isFirstPress = false;
     private float startTime;
 
     private float elapsedTime;
@@ -21,8 +21,8 @@ public class Rumpu : MonoBehaviour
     private float maxTime;
     private float expectedBeatTime;
 
-    private bool isLevelFailed = false; // Track whether the current level is failed
-    private float retryDelay = 1.5f; // Delay before retrying the level
+    private bool isLevelFailed = false;
+    private float retryDelay = 1.5f;
 
     private void Start()
     {
@@ -34,7 +34,6 @@ public class Rumpu : MonoBehaviour
             Debug.LogError("Audio clip not assigned to clickSound field!");
         }
 
-        // Load the initial rhythm pattern
         GetAndSetCurrentLevelRhythmPattern();
     }
 
@@ -45,12 +44,6 @@ public class Rumpu : MonoBehaviour
         if (levelManager != null)
         {
             rhythmPattern = levelManager.GetCurrentLevelRhythmPattern();
-            // Debug.Log("Rhythm Pattern in Rumpu:");
-            // foreach (float beatTime in rhythmPattern)
-            // {
-            //     Debug.Log("Beat Time: " + beatTime);
-            // }
-
             currentBeatIndex = 0;
             isFirstPress = false;
             isLevelFailed = false;
@@ -61,12 +54,29 @@ public class Rumpu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isLevelFailed)
+        {
+            retryTime -= Time.deltaTime;
+            if (retryTime <= 0)
+            {
+                EndRetryState();
+            }
+        }
+    }
+
+    private void EndRetryState()
+    {
+        objectSpriteRenderer.color = Color.white;
+        isLevelFailed = false;
+        GetAndSetCurrentLevelRhythmPattern();
+    }
+
     private void OnMouseDown()
     {
         if (isLevelFailed)
         {
-            // The level was failed, but the player is trying again.
-            StartCoroutine(RetryLevel());
             return;
         }
 
@@ -82,7 +92,6 @@ public class Rumpu : MonoBehaviour
             if (currentBeatIndex < rhythmPattern.Count)
             {
                 elapsedTime = Time.time - startTime;
-
                 expectedBeatTime = rhythmPattern[currentBeatIndex];
                 minTime = expectedBeatTime - beatTolerance;
                 maxTime = expectedBeatTime + beatTolerance;
@@ -113,37 +122,16 @@ public class Rumpu : MonoBehaviour
                     Debug.Log("Beat Missed!");
                     Debug.Log("Expected Beat Time: " + expectedBeatTime);
                     Debug.Log("Elapsed Time: " + elapsedTime);
-                    isLevelFailed = true; // The level is failed
+                    StartRetryState();
                 }
             }
         }
     }
 
-    private IEnumerator RetryLevel()
+    private void StartRetryState()
     {
-        retryTime = Time.time + retryDelay;
-
-        // Change the object's color to red
+        isLevelFailed = true;
+        retryTime = retryDelay;
         objectSpriteRenderer.color = Color.red;
-
-        while (Time.time < retryTime)
-        {
-            yield return null;
-        }
-
-        // Reset the object's color to its original state
-        objectSpriteRenderer.color = Color.white;
-
-        Debug.Log("You can try again now!");
-
-        // Retry the level
-        GetAndSetCurrentLevelRhythmPattern();
     }
-
-
-
-
-
-
-
 }
