@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rumpu : MonoBehaviour
 {
+    private SpriteRenderer objectSpriteRenderer;
+    private float retryTime;
     public RhythmPlayer rhythmPlayer;
     public LevelManager levelManager;
     public AudioClip clickSound;
@@ -19,8 +21,12 @@ public class Rumpu : MonoBehaviour
     private float maxTime;
     private float expectedBeatTime;
 
+    private bool isLevelFailed = false; // Track whether the current level is failed
+    private float retryDelay = 1.5f; // Delay before retrying the level
+
     private void Start()
     {
+        objectSpriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
 
         if (clickSound == null)
@@ -32,25 +38,22 @@ public class Rumpu : MonoBehaviour
         GetAndSetCurrentLevelRhythmPattern();
     }
 
-    // Method to get the current level's rhythm pattern from the LevelManager
     private void GetAndSetCurrentLevelRhythmPattern()
     {
-        // Find the LevelManager in the scene
         levelManager = FindObjectOfType<LevelManager>();
 
         if (levelManager != null)
         {
-            // Get the rhythm pattern for the current level
             rhythmPattern = levelManager.GetCurrentLevelRhythmPattern();
-            Debug.Log("Rhythm Pattern in Rumpu:");
-            foreach (float beatTime in rhythmPattern)
-            {
-                Debug.Log("Beat Time: " + beatTime);
-            }
+            // Debug.Log("Rhythm Pattern in Rumpu:");
+            // foreach (float beatTime in rhythmPattern)
+            // {
+            //     Debug.Log("Beat Time: " + beatTime);
+            // }
 
-            // Initialize values for the new pattern
             currentBeatIndex = 0;
             isFirstPress = false;
+            isLevelFailed = false;
         }
         else
         {
@@ -60,11 +63,17 @@ public class Rumpu : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (isLevelFailed)
+        {
+            // The level was failed, but the player is trying again.
+            StartCoroutine(RetryLevel());
+            return;
+        }
+
         if (!isFirstPress)
         {
-            // This is the first press, so start the player's turn
             isFirstPress = true;
-            startTime = Time.time; // Record the start time
+            startTime = Time.time;
             Debug.Log("Player's Turn Started!");
         }
 
@@ -72,9 +81,8 @@ public class Rumpu : MonoBehaviour
         {
             if (currentBeatIndex < rhythmPattern.Count)
             {
-                elapsedTime = Time.time - startTime; // Calculate time since the first press
+                elapsedTime = Time.time - startTime;
 
-                // Check if the elapsed time is within the range of the expected beat time plus/minus beatTolerance
                 expectedBeatTime = rhythmPattern[currentBeatIndex];
                 minTime = expectedBeatTime - beatTolerance;
                 maxTime = expectedBeatTime + beatTolerance;
@@ -87,14 +95,12 @@ public class Rumpu : MonoBehaviour
 
                     if (currentBeatIndex == rhythmPattern.Count)
                     {
-                        // If the current beat is the last one in the pattern, load the next level
                         if (levelManager != null)
                         {
                             levelManager.LoadNextLevel();
-                            GetAndSetCurrentLevelRhythmPattern(); // Get the new rhythm pattern
+                            GetAndSetCurrentLevelRhythmPattern();
                         }
 
-                        // Update the rhythm pattern in the RhythmPlayer
                         rhythmPlayer = FindObjectOfType<RhythmPlayer>();
                         if (rhythmPlayer != null)
                         {
@@ -107,8 +113,37 @@ public class Rumpu : MonoBehaviour
                     Debug.Log("Beat Missed!");
                     Debug.Log("Expected Beat Time: " + expectedBeatTime);
                     Debug.Log("Elapsed Time: " + elapsedTime);
+                    isLevelFailed = true; // The level is failed
                 }
             }
         }
     }
+
+    private IEnumerator RetryLevel()
+    {
+        retryTime = Time.time + retryDelay;
+
+        // Change the object's color to red
+        objectSpriteRenderer.color = Color.red;
+
+        while (Time.time < retryTime)
+        {
+            yield return null;
+        }
+
+        // Reset the object's color to its original state
+        objectSpriteRenderer.color = Color.white;
+
+        Debug.Log("You can try again now!");
+
+        // Retry the level
+        GetAndSetCurrentLevelRhythmPattern();
+    }
+
+
+
+
+
+
+
 }
