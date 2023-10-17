@@ -42,7 +42,7 @@ public class RestartButton : MonoBehaviour
         rhythmPlayer.EnableRhythmPlayer();
     }
 
-    private void OnMouseDown()
+   private void OnMouseDown()
     {
         RestartGame();
         DisableRestartButton();
@@ -50,15 +50,17 @@ public class RestartButton : MonoBehaviour
 
     public void RestartGame()
     {
-        rumpu = GetComponent<Rumpu>();
-        if (levelManager != null)
+        rumpu = FindObjectOfType<Rumpu>();
+
+        if (levelManager != null && rumpu != null)
         {
             Debug.Log("Restart button clicked");
             levelManager.RestartGame();
         }
         else
         {
-            Debug.Log("LevelManager not found!");
+            Debug.Log("LevelManager, Rumpu, or RhythmPlayer not found!");
         }
     }
+
 }

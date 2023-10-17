@@ -6,7 +6,8 @@ public class LevelManager : MonoBehaviour
 {
     
     public Rumpu rumpu;
-    // private bool allLevelsCompleted = false;
+    // public RhythmPlayer rhythmPlayer;
+    private bool allLevelsCompleted = false;
     // Define your rhythm patterns for each level in the script
     private List<List<float>> levelRhythmPatterns = new List<List<float>>
     {
@@ -20,10 +21,10 @@ public class LevelManager : MonoBehaviour
         {
             0.0f, 0.637f, 1.132f, 1.289f, 1.606f, 1.923f
         },
-        new List<float>
-        {
-            0.0f, 1.0f, 2.0f, 3.0f
-        },
+        // new List<float>
+        // {
+        //     0.0f, 1.0f, 2.0f, 3.0f
+        // },
     };
 
     
@@ -96,9 +97,18 @@ public void LoadNextLevel()
     {
         rumpu = FindObjectOfType<Rumpu>();
         Debug.Log("game restarted");
-        currentLevel = 0; // Reset the current level to the first level
-        rumpu.GetAndSetCurrentLevelRhythmPattern();
-        LoadLevel(currentLevel); // Load the first level
+
+        if (rumpu != null )
+        {
+            currentLevel = 0; // Reset the current level to the first level
+            rumpu.GetAndSetCurrentLevelRhythmPattern();
+            LoadLevel(currentLevel); // Load the first level
+        }
+        else
+        {
+            Debug.Log("Rumpu or RhythmPlayer not found!");
+        }
     }
+
 
 }

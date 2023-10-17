@@ -21,6 +21,7 @@ public class RhythmPlayer : MonoBehaviour
     {
         // Enable the RhythmPlayer by setting its GameObject active
         gameObject.SetActive(true);
+        GetAndSetCurrentLevelRhythmPattern();
     }
 
     public void DisableRhythmPlayer()
