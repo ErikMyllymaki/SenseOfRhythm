@@ -9,7 +9,7 @@ public class Rumpu : MonoBehaviour
     public RhythmPlayer rhythmPlayer;
     public LevelManager levelManager;
     public AudioClip clickSound;
-    public List<float> rhythmPattern = new List<float>();
+    private List<float> rhythmPattern = new List<float>();
     private AudioSource audioSource;
     private int currentBeatIndex = 0;
     private float beatTolerance = 0.2f;

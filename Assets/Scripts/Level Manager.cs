@@ -21,10 +21,10 @@ public class LevelManager : MonoBehaviour
         {
             0.0f, 0.637f, 1.132f, 1.289f, 1.606f, 1.923f
         },
-        // new List<float>
-        // {
-        //     0.0f, 1.0f, 2.0f, 3.0f
-        // },
+        new List<float>
+        {
+            0.0f, 1.0f, 2.0f, 3.0f
+        },
     };
 
     
