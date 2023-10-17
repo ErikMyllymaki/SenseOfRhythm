@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Polyrhythm.unity
     guid: 419fb94da56bfbc438b2981355125861
+  - enabled: 1
+    path: Assets/Scenes/Fast Fingers.unity
+    guid: c8e61c2330e823d428fb6aa50d8e8adf
   m_configObjects: {}
