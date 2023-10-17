@@ -5,11 +5,11 @@ using UnityEngine;
 public class RhythmPlayer : MonoBehaviour
 {
     public AudioClip drumSound;
-    private List<float> rhythmPattern = new List<float>(); // Store the rhythm pattern
-    private int currentBeatIndex = 0; // Index to track the current beat
-    private bool isPlayingPattern = false; // Flag to indicate whether the rhythm pattern is playing
+    private List<float> rhythmPattern = new List<float>();
+    private int currentBeatIndex = 0;
+    private bool isPlayingPattern = false;
     private AudioSource audioSource;
-    private float patternStartTime; // Store the start time of the pattern
+    private float patternStartTime;
 
     private void Start()
     {
@@ -17,12 +17,19 @@ public class RhythmPlayer : MonoBehaviour
         GetAndSetCurrentLevelRhythmPattern();
     }
 
-    // public void SetRhythmPattern(List<float> pattern)
-    // {
-    //     rhythmPattern = pattern;
-    // }
+    public void EnableRhythmPlayer()
+    {
+        // Enable the RhythmPlayer by setting its GameObject active
+        gameObject.SetActive(true);
+        GetAndSetCurrentLevelRhythmPattern();
+    }
 
-    // Method to get the current level's rhythm pattern from the LevelManager
+    public void DisableRhythmPlayer()
+    {
+        // Disable the RhythmPlayer by setting its GameObject inactive
+        gameObject.SetActive(false);
+    }
+
     public void GetAndSetCurrentLevelRhythmPattern()
     {
         // Find the LevelManager in the scene
@@ -30,7 +37,6 @@ public class RhythmPlayer : MonoBehaviour
 
         if (levelManager != null)
         {
-            // Get the rhythm pattern for the current level
             rhythmPattern = levelManager.GetCurrentLevelRhythmPattern();
             Debug.Log("Rhythm Pattern in Rumpu:");
             foreach (float beatTime in rhythmPattern)
@@ -46,15 +52,12 @@ public class RhythmPlayer : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
-
         if (!isPlayingPattern)
         {
             StartRhythmPattern();
         }
         else
         {
-            // Stop the current pattern and start a new one
             StopRhythmPattern();
             StartRhythmPattern();
         }
@@ -62,15 +65,13 @@ public class RhythmPlayer : MonoBehaviour
 
     private void StartRhythmPattern()
     {
-        Debug.Log("PlayRhythmPattern started");
         currentBeatIndex = 0;
         isPlayingPattern = true;
-        patternStartTime = Time.timeSinceLevelLoad; // Store the start time
+        patternStartTime = Time.timeSinceLevelLoad;
     }
 
     private void StopRhythmPattern()
     {
-        Debug.Log("Stopping RhythmPattern");
         isPlayingPattern = false;
     }
 
@@ -81,14 +82,11 @@ public class RhythmPlayer : MonoBehaviour
             float beatTime = rhythmPattern[currentBeatIndex];
             float expectedBeatTime = patternStartTime + beatTime;
 
-            // Check if it's time to play the next beat
             if (currentBeatIndex < rhythmPattern.Count && Time.timeSinceLevelLoad >= expectedBeatTime)
             {
                 audioSource.PlayOneShot(drumSound);
-                // Debug.Log("Next beat coming in: " + (expectedBeatTime - Time.timeSinceLevelLoad));
                 currentBeatIndex++;
 
-                // Check if the rhythm pattern is finished
                 if (currentBeatIndex >= rhythmPattern.Count)
                 {
                     Debug.Log("Rhythm pattern finished");
@@ -97,10 +95,4 @@ public class RhythmPlayer : MonoBehaviour
             }
         }
     }
-
-    // public List<float> GetRhythmPattern()
-    // {
-    //     return rhythmPattern;
-    // }
-
 }
