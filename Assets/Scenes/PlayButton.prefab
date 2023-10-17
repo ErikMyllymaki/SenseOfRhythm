@@ -97,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de195667650acaf49b1d229dae544651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drumSound: {fileID: 0}
