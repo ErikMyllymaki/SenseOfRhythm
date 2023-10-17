@@ -132,6 +132,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1720535826}
+    - target: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
       propertyPath: rhythmPlayer
       value: 
       objectReference: {fileID: 968469333}
@@ -324,6 +328,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &553993818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1583820063134434100, guid: 13f9a5034755d7d40aff1e7103a91a95, type: 3}
+  m_PrefabInstance: {fileID: 397244779}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e70b37316a1e8d4990fd2056c227433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968469330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 730217766485690830, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
@@ -481,6 +496,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de195667650acaf49b1d229dae544651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1720535826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -4150763287736822800, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+  m_PrefabInstance: {fileID: 1670318870365685684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10da1edf28ae8d346bcb15e1b11c1cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1936419750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2359667167145151170, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+  m_PrefabInstance: {fileID: 1044917741578516197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1936419751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936419750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083a3e7bc1a09fb419aef4d74695332d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rumpu: {fileID: 553993818}
+  levelManager: {fileID: 1720535826}
+  rhythmPlayer: {fileID: 968469333}
+--- !u!61 &1936419754
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936419750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &40577442178079007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: c84aba72d6f36d3498aa57ec27bcc4f0, type: 3}
     - target: {fileID: 730217766485690830, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: m_Name
-      value: Square
+      value: RhythmPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 1538362077676608637, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
       propertyPath: m_LocalScale.x
@@ -568,6 +659,73 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 968469331}
   m_SourcePrefab: {fileID: 100100000, guid: 6e3c182b33ed2424fbc5c74e2257312e, type: 3}
+--- !u!1001 &1044917741578516197
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2359667167145151170, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_Name
+      value: RestartButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414078206919035582, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2359667167145151170, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936419751}
+    - targetCorrespondingSourceObject: {fileID: 2359667167145151170, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1936419754}
+  m_SourcePrefab: {fileID: 100100000, guid: 4e618aae86c4a6640a3c8cdb851015bd, type: 3}
 --- !u!1001 &1670318870365685684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -576,6 +734,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4150763287736822800, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: rumpu
+      value: 
+      objectReference: {fileID: 553993818}
+    - target: {fileID: -4150763287736822800, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
+      propertyPath: rhythmPlayer
+      value: 
+      objectReference: {fileID: 968469333}
     - target: {fileID: 341806977435781734, guid: 72ad72fe66fa6c4429e4a7ac120bd6da, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.84188104
@@ -633,3 +799,4 @@ SceneRoots:
   - {fileID: 397244779}
   - {fileID: 40577442178079007}
   - {fileID: 1670318870365685684}
+  - {fileID: 1044917741578516197}
