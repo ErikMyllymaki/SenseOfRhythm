@@ -12,9 +12,13 @@ public class LevelManager : MonoBehaviour
     private List<List<float>> levelRhythmPatterns = new List<List<float>>
     {
         // first level
-        new List<float>
+           new List<float>
         {
-            0.0f, 0.5f, 1.0f, 1.5f, 2.0f
+             0.0f, 0.355628f, 0.705217f, 0.872358f, 1.073313f, 1.398353f, 1.576731f, 1.757802f, 1.951473f, 2.274430f, 2.463506f
+        },
+         new List<float>
+        {
+           0.0f, 0.43f, 0.77f, 0.91f, 1.14f, 1.38f, 1.55f, 1.80f
         },
         // second level
         new List<float>
