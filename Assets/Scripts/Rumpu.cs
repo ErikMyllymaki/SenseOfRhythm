@@ -37,9 +37,13 @@ public class Rumpu : MonoBehaviour
         GetAndSetCurrentLevelRhythmPattern();
     }
 
-    private void GetAndSetCurrentLevelRhythmPattern()
+    public void GetAndSetCurrentLevelRhythmPattern()
     {
         levelManager = FindObjectOfType<LevelManager>();
+
+        if (levelManager.currentLevel == 0) {
+            Debug.Log("currentlevel is 0");
+        }
 
         if (levelManager != null)
         {

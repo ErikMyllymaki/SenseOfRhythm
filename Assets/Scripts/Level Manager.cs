@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
+    
+    public Rumpu rumpu;
+    // private bool allLevelsCompleted = false;
     // Define your rhythm patterns for each level in the script
     private List<List<float>> levelRhythmPatterns = new List<List<float>>
     {
@@ -25,7 +27,7 @@ public class LevelManager : MonoBehaviour
     };
 
     
-    private int currentLevel = 0; // Current level index
+    public int currentLevel = 0; // Current level index
 
     private void Start()
     {
@@ -33,20 +35,30 @@ public class LevelManager : MonoBehaviour
         LoadLevel(currentLevel);
     }
 
-    public void LoadNextLevel()
-    {
-        currentLevel++;
+public void LoadNextLevel()
+{
+    currentLevel++;
 
-        // Check if there are more levels
-        if (currentLevel < levelRhythmPatterns.Count)
+    // Check if there are more levels
+    if (currentLevel < levelRhythmPatterns.Count)
+    {
+        LoadLevel(currentLevel);
+    }
+    else
+    {
+        allLevelsCompleted = true; // Mark all levels as completed
+        Debug.Log("All levels completed!");
+
+        // Check if the RestartButton is available and enable it
+        RestartButton restartButton = FindObjectOfType<RestartButton>();
+        if (restartButton != null)
         {
-            LoadLevel(currentLevel);
-        }
-        else
-        {
-            Debug.Log("All levels completed!");
+            restartButton.EnableRestartButton();
         }
     }
+}
+
+
 
     private void LoadLevel(int levelIndex)
     {
@@ -75,8 +87,18 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Invalid level index: " + currentLevel);
+            // Debug.LogError("Invalid level index: " + currentLevel);
             return new List<float>();
         }
     }
+
+    public void RestartGame()
+    {
+        rumpu = FindObjectOfType<Rumpu>();
+        Debug.Log("game restarted");
+        currentLevel = 0; // Reset the current level to the first level
+        rumpu.GetAndSetCurrentLevelRhythmPattern();
+        LoadLevel(currentLevel); // Load the first level
+    }
+
 }
