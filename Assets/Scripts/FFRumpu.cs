@@ -9,37 +9,30 @@ public class ClickSoundLimitedTime : MonoBehaviour
     private float clickStartTime;
     private int clickCount;
     private bool gameEnded = false;
+    private SpriteRenderer spriteRenderer;
 
-    // public Button restartButton;
+    public FFrestart restartButtonScript; // Reference to the FFrestart script.
+
     private float clickDuration = 5f;
 
     private void Start()
     {
-        // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Assign the SpriteRenderer component if it's on the same GameObject.
 
-        // Check if an AudioClip is assigned
         if (clickSound == null)
         {
             Debug.LogError("Click sound is not assigned!");
         }
-
-        // Attach a method to the restart button's click event
-        // if (restartButton != null)
-        // {
-        //     restartButton.onClick.AddListener(RestartGame);
-        // }
     }
 
     private void OnMouseDown()
     {
-        // Check if you can click and the game hasn't ended
         if (!canClick && !gameEnded)
         {
             StartClicking();
         }
-        else if (Time.time - clickStartTime <= clickDuration)
-        if (canClick)
+        else if (Time.time - clickStartTime <= clickDuration && canClick)
         {
             // Play the click sound
             if (audioSource != null)
@@ -63,22 +56,26 @@ public class ClickSoundLimitedTime : MonoBehaviour
         clickStartTime = Time.time;
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
+        Debug.Log("Game restarted");
         // Reset the click count and enable clicking
         clickCount = 0;
         canClick = false;
         gameEnded = false;
+
+        // Enable the restart button
     }
 
     private void Update()
     {
-        // Check if the 5-second duration has elapsed
         if (canClick && Time.time - clickStartTime >= clickDuration)
         {
             canClick = false;
             gameEnded = true;
             Debug.Log("Clicks within 5 seconds: " + clickCount);
+            restartButtonScript.EnableRestartButton();
+            // RestartGame(); // Call the RestartGame method to enable the restart button.
         }
     }
 }
