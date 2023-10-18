@@ -12,6 +12,7 @@ public class ReturnToMenu : MonoBehaviour
     // Detect mouse click on the object
     private void OnMouseDown()
     {
+             Debug.Log("errpr");
         LoadMenu();
     }
 }
