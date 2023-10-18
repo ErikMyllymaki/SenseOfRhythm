@@ -172,7 +172,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.9
 --- !u!114 &191336306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +366,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2641178139727740295}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 191336304}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -639,6 +651,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c0a4ad6d93a9c9a4c99ae2206b309982, type: 3}
+    - target: {fileID: 4761498576198387658, guid: aaeedae6015f705408ee27c052bf268f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9043445561244236051, guid: aaeedae6015f705408ee27c052bf268f, type: 3}
       propertyPath: m_Name
       value: FFrestart
@@ -1279,7 +1295,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5777744199997168149, guid: 5a2b3ea060b4b3b4681dcffaecb59fdd, type: 3}
       propertyPath: m_Radius
-      value: 1.1
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: -5777744199997168149, guid: 5a2b3ea060b4b3b4681dcffaecb59fdd, type: 3}
       propertyPath: m_Enabled
